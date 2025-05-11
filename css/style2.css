@@ -440,18 +440,13 @@ h3 {
   width: max-content;
   position: absolute;
   top: 0;
-  left: -50%;
+  left: 0;
   font-weight: 600;
   background-color: var(--background-300);
   padding: .5em;
   border-radius: .25em;
   user-select: none;
   opacity: 1;
-}
-
-.expand-menu>li>.notif-copied{
-  top: -50%;
-  left: 0;
 }
 
 .d-none {
