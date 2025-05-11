@@ -30,16 +30,18 @@
         <li><a href="#about-me" class="nav-link">About Me</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li class="copy-email">
-          <a href="#" class="nav-link" id="contact-link">Contact</a>
-          <div class="notif-copied d-none" id="email-notif">Email copied!</div>
-        </li>
         <li>
           <a href="https://drive.google.com/file/d/1TNKIJseyexA03c4RCJnCeAQ4JShzuodm/view" target="_blank" rel="noopener noreferrer" class="nav-link">Resume</a>
         </li>
+        <li>
+          <div class="copy-email" id="copy-email">
+            <button type="button" class="btn" id="contact-link">Contact</button>
+            <div id="email-notif"></div>
+          </div>
+        </li>
       </ul>
       <div class="light-switch">
-        <button class="btn btn-empty p-0" role="button" onclick="">
+        <button class="btn btn-empty p-0" role="button" id="light-switch-btn">
           <svg viewBox="0 0 24 24" class="ico-32 svg-fill-950">
             <title>theme-light-dark</title>
             <path
@@ -261,69 +263,11 @@
     </footer>
   </body>
 
+  <script src="js/CopyEmail.js"></script>
+  <script src="js/index.js"></script>
+
   <script>
-    const lightSwitch = document.getElementsByClassName("btn-empty");
-    lightSwitch[0].addEventListener("click", switchThemes);
-    lightSwitch[1].addEventListener("click", switchThemes);
-
-    function switchThemes() {
-      const docuTheme = document.documentElement;
-      if (docuTheme.dataset.theme === "light") {
-        docuTheme.dataset.theme = "dark";
-        return;
-      }
-
-      docuTheme.dataset.theme = "light";
-      return;
-    }
-
-    const email = document.getElementsByClassName("copy-email");
-    email[0].addEventListener("click", copyEmail);
-    email[1].addEventListener("click", copyEmail);
-
-    function copyEmail() {
-      const copiedNotif = document.getElementById("email-notif");
-      
-      const hiddenInput = createEmailInput();
-      copiedNotif.append(hiddenInput);
-      
-      copyText(hiddenInput);
-
-      setTimeout(() => {
-        copiedNotif.classList.toggle("d-none");
-      }, 3000);
-
-      copiedNotif.classList.toggle("d-none");
-      copiedNotif.lastChild.remove();
-    }
-
-    function createEmailInput() {
-      const input = document.createElement("input");
-      input.type = "input";
-      input.value = "joe.salcedo100@gmail.com";
-
-      return input;
-    }
-
-    function copyText(input) {
-      if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-        input.contenteditable = true;
-        input.readonly = false;
-    
-        var range = document.createRange();
-        range.selectNodeContents(input);
-    
-        var selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        input.setSelectionRange(0, 999999);
-      } else {
-        input.select()
-      }
-
-      document.execCommand('copy');
-    }
-
+    main();
   </script>
 
 </html>
